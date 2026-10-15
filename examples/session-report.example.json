@@ -1,0 +1,115 @@
+{
+  "report_id": "7f4b1d63-2f42-41f9-a9df-7f68b0d2f111",
+  "test_id": "d31a7f32-feb2-4b6c-a791-3c5d64726a12",
+  "session_id": "a8e5ad6c-38a8-4b38-8ef6-51a66e9f2c41",
+  "generated_at": "2026-05-03T18:30:00Z",
+  "confidence_level": "high",
+  "executive_summary": "The participant understood the landing page's broad purpose but appeared to hesitate around the primary call to action. The strongest evidence came from the participant saying they were unsure what would happen after clicking the main button and from a measured pause before continuing.",
+  "task_completion": [
+    {
+      "task_id": "6a9fb4ea-4487-4565-b334-8f1ed3dfaa10",
+      "task_title": "Explain what this product does",
+      "status": "completed",
+      "timestamp_start": 5000,
+      "timestamp_end": 42000,
+      "evidence_text": "The participant said the product seemed to record user reactions and summarize findings for researchers.",
+      "confidence": "high"
+    }
+  ],
+  "friction_moments": [
+    {
+      "title": "Primary CTA outcome was unclear",
+      "timestamp_start": 46000,
+      "timestamp_end": 68000,
+      "evidence_type": "combined",
+      "evidence_text": "The participant paused for about 7 seconds near the primary CTA and said, \"I am not sure what happens if I click this.\"",
+      "severity": "high",
+      "confidence": "high",
+      "related_task_id": "6a9fb4ea-4487-4565-b334-8f1ed3dfaa10",
+      "recommended_action": "Change the CTA label or nearby helper text to explain the next step clearly."
+    }
+  ],
+  "confusion_moments": [
+    {
+      "title": "Recording scope needed clearer explanation",
+      "timestamp_start": 91000,
+      "timestamp_end": 112000,
+      "evidence_type": "transcript",
+      "evidence_text": "The participant said, \"I would want to know if this records my whole screen or just the page.\"",
+      "severity": "high",
+      "confidence": "high",
+      "related_task_id": null,
+      "recommended_action": "Add concise recording-scope copy near the first signup or start-test action."
+    }
+  ],
+  "trust_dropoff_moments": [
+    {
+      "title": "Data handling concern before continuing",
+      "timestamp_start": 118000,
+      "timestamp_end": 136000,
+      "evidence_type": "self_report",
+      "evidence_text": "The participant self-reported that they wanted to understand how recordings are stored before continuing.",
+      "severity": "high",
+      "confidence": "high",
+      "related_task_id": null,
+      "recommended_action": "Show a short privacy reassurance with a link to the full security page near the CTA."
+    }
+  ],
+  "engagement_moments": [
+    {
+      "title": "Example report section drew attention",
+      "timestamp_start": 150000,
+      "timestamp_end": 174000,
+      "evidence_type": "combined",
+      "evidence_text": "The participant slowed scrolling on the example report section and said the timestamped clips looked useful.",
+      "severity": "medium",
+      "confidence": "medium",
+      "related_task_id": null,
+      "recommended_action": "Move a compact example report preview higher on the landing page."
+    }
+  ],
+  "quote_highlights": [
+    {
+      "quote": "I am not sure what happens if I click this.",
+      "timestamp_start": 52000,
+      "timestamp_end": 56000,
+      "related_task_id": "6a9fb4ea-4487-4565-b334-8f1ed3dfaa10",
+      "why_it_matters": "This directly supports the finding that the CTA outcome was unclear.",
+      "confidence": "high"
+    }
+  ],
+  "behavioral_observations": [
+    {
+      "title": "Pause before CTA interaction",
+      "timestamp_start": 46000,
+      "timestamp_end": 53000,
+      "evidence_type": "pause",
+      "observation": "The participant paused for about 7 seconds before commenting on the CTA. This may indicate hesitation, but the report does not infer an internal emotional state.",
+      "confidence": "medium"
+    }
+  ],
+  "recommendations": [
+    {
+      "title": "Clarify the primary CTA",
+      "description": "Update the CTA copy to describe the exact next step, and add one sentence explaining that recording starts only after participant consent.",
+      "severity": "high",
+      "evidence_text": "The participant explicitly said they were not sure what would happen after clicking the CTA.",
+      "related_task_id": "6a9fb4ea-4487-4565-b334-8f1ed3dfaa10",
+      "confidence": "high"
+    }
+  ],
+  "suggested_clips": [
+    {
+      "title": "CTA hesitation and comment",
+      "timestamp_start": 43000,
+      "timestamp_end": 70000,
+      "reason": "Shows the pause before the primary CTA and the participant's explicit comment about uncertainty.",
+      "related_moment_title": "Primary CTA outcome was unclear",
+      "confidence": "high"
+    }
+  ],
+  "limitations": [
+    "This report is based on one qualitative session and should not be treated as statistically representative.",
+    "The report uses observable behavior, transcript evidence, self-reported feedback, and interaction events. It does not infer hidden emotions, identity, protected traits, or biometric attributes."
+  ]
+}

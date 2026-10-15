@@ -1,0 +1,384 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI Reaction Lab Session Report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "report_id",
+    "test_id",
+    "session_id",
+    "generated_at",
+    "confidence_level",
+    "executive_summary",
+    "task_completion",
+    "friction_moments",
+    "confusion_moments",
+    "trust_dropoff_moments",
+    "engagement_moments",
+    "quote_highlights",
+    "behavioral_observations",
+    "recommendations",
+    "suggested_clips",
+    "limitations"
+  ],
+  "properties": {
+    "report_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "test_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "session_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "confidence_level": {
+      "$ref": "#/$defs/confidence"
+    },
+    "executive_summary": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "task_completion": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/task_completion_item"
+      }
+    },
+    "friction_moments": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/moment"
+      }
+    },
+    "confusion_moments": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/moment"
+      }
+    },
+    "trust_dropoff_moments": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/moment"
+      }
+    },
+    "engagement_moments": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/moment"
+      }
+    },
+    "quote_highlights": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/quote_highlight"
+      }
+    },
+    "behavioral_observations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/behavioral_observation"
+      }
+    },
+    "recommendations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/recommendation"
+      }
+    },
+    "suggested_clips": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/suggested_clip"
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 800
+      }
+    }
+  },
+  "$defs": {
+    "severity": {
+      "type": "string",
+      "enum": ["low", "medium", "high", "critical"]
+    },
+    "confidence": {
+      "type": "string",
+      "enum": ["low", "medium", "high"]
+    },
+    "evidence_type": {
+      "type": "string",
+      "enum": [
+        "transcript",
+        "click",
+        "scroll",
+        "pause",
+        "self_report",
+        "manual_marker",
+        "screen_event",
+        "combined"
+      ]
+    },
+    "timestamp_ms": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "moment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "timestamp_start",
+        "timestamp_end",
+        "evidence_type",
+        "evidence_text",
+        "severity",
+        "confidence",
+        "related_task_id",
+        "recommended_action"
+      ],
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "timestamp_start": {
+          "$ref": "#/$defs/timestamp_ms"
+        },
+        "timestamp_end": {
+          "$ref": "#/$defs/timestamp_ms"
+        },
+        "evidence_type": {
+          "$ref": "#/$defs/evidence_type"
+        },
+        "evidence_text": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1200
+        },
+        "severity": {
+          "$ref": "#/$defs/severity"
+        },
+        "confidence": {
+          "$ref": "#/$defs/confidence"
+        },
+        "related_task_id": {
+          "type": ["string", "null"],
+          "format": "uuid"
+        },
+        "recommended_action": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        }
+      }
+    },
+    "task_completion_item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "task_id",
+        "task_title",
+        "status",
+        "timestamp_start",
+        "timestamp_end",
+        "evidence_text",
+        "confidence"
+      ],
+      "properties": {
+        "task_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "task_title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "type": "string",
+          "enum": ["completed", "partially_completed", "skipped", "unclear"]
+        },
+        "timestamp_start": {
+          "type": ["integer", "null"],
+          "minimum": 0
+        },
+        "timestamp_end": {
+          "type": ["integer", "null"],
+          "minimum": 0
+        },
+        "evidence_text": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "confidence": {
+          "$ref": "#/$defs/confidence"
+        }
+      }
+    },
+    "quote_highlight": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "quote",
+        "timestamp_start",
+        "timestamp_end",
+        "related_task_id",
+        "why_it_matters",
+        "confidence"
+      ],
+      "properties": {
+        "quote": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "timestamp_start": {
+          "$ref": "#/$defs/timestamp_ms"
+        },
+        "timestamp_end": {
+          "$ref": "#/$defs/timestamp_ms"
+        },
+        "related_task_id": {
+          "type": ["string", "null"],
+          "format": "uuid"
+        },
+        "why_it_matters": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 800
+        },
+        "confidence": {
+          "$ref": "#/$defs/confidence"
+        }
+      }
+    },
+    "behavioral_observation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "timestamp_start",
+        "timestamp_end",
+        "evidence_type",
+        "observation",
+        "confidence"
+      ],
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "timestamp_start": {
+          "$ref": "#/$defs/timestamp_ms"
+        },
+        "timestamp_end": {
+          "$ref": "#/$defs/timestamp_ms"
+        },
+        "evidence_type": {
+          "$ref": "#/$defs/evidence_type"
+        },
+        "observation": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "confidence": {
+          "$ref": "#/$defs/confidence"
+        }
+      }
+    },
+    "recommendation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "description",
+        "severity",
+        "evidence_text",
+        "related_task_id",
+        "confidence"
+      ],
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1200
+        },
+        "severity": {
+          "$ref": "#/$defs/severity"
+        },
+        "evidence_text": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1200
+        },
+        "related_task_id": {
+          "type": ["string", "null"],
+          "format": "uuid"
+        },
+        "confidence": {
+          "$ref": "#/$defs/confidence"
+        }
+      }
+    },
+    "suggested_clip": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "timestamp_start",
+        "timestamp_end",
+        "reason",
+        "related_moment_title",
+        "confidence"
+      ],
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "timestamp_start": {
+          "$ref": "#/$defs/timestamp_ms"
+        },
+        "timestamp_end": {
+          "$ref": "#/$defs/timestamp_ms"
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 800
+        },
+        "related_moment_title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "confidence": {
+          "$ref": "#/$defs/confidence"
+        }
+      }
+    }
+  }
+}
